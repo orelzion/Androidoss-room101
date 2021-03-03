@@ -1,5 +1,6 @@
 package com.example.room101.model
 
+import androidx.lifecycle.LiveData
 import com.example.room101.model.db.ToDoDao
 import com.example.room101.model.db.ToDoEntity
 
@@ -11,7 +12,7 @@ class ToDoRepository(private val toDoDao: ToDoDao) {
         UNCOMPLETED
     }
 
-    fun getToDoItems(toDoFilter: ToDoFilter): List<ToDoEntity> {
+    fun getToDoItems(toDoFilter: ToDoFilter): LiveData<List<ToDoEntity>> {
         return when (toDoFilter) {
             ToDoFilter.ALL -> toDoDao.getAllItems()
             ToDoFilter.COMPLETED -> toDoDao.getCompletedItems()

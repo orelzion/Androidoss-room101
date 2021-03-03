@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<ToDoViewModel> {
         val toDoDao = Room.databaseBuilder(this, ToDoAppDb::class.java, "to-do")
-                .allowMainThreadQueries()
                 .build()
                 .getToDoDao()
         ToDoViewModelFactory(ToDoRepository(toDoDao))
@@ -31,12 +30,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel.onListScreenLoaded()
-
         val toDoListView: RecyclerView = findViewById(R.id.toDoList)
         toDoListView.adapter = toDoListAdapter
 
-        viewModel.bindListViewData().observe(this) { viewState ->
+        viewModel.listLiveData.observe(this) { viewState ->
             toDoListAdapter.submitList(viewState.itemsList)
         }
 

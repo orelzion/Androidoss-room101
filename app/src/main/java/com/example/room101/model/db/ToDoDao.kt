@@ -1,5 +1,6 @@
 package com.example.room101.model.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -15,11 +16,11 @@ interface ToDoDao {
     fun remove(toDoEntity: ToDoEntity)
 
     @Query("SELECT * FROM todoentity WHERE isDone = 1")
-    fun getCompletedItems(): List<ToDoEntity>
+    fun getCompletedItems(): LiveData<List<ToDoEntity>>
 
     @Query("SELECT * FROM todoentity WHERE isDone = 0")
-    fun getUnCompletedItems(): List<ToDoEntity>
+    fun getUnCompletedItems(): LiveData<List<ToDoEntity>>
 
     @Query("SELECT * FROM todoentity")
-    fun getAllItems(): List<ToDoEntity>
+    fun getAllItems(): LiveData<List<ToDoEntity>>
 }
