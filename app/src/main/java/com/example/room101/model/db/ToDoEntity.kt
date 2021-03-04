@@ -8,5 +8,6 @@ data class ToDoEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
     val text: String,
-    val isDone: Boolean = false
+    val isDone: Boolean = false,
+    val priority: Int
 )

@@ -21,7 +21,7 @@ class ToDoRepository(private val toDoDao: ToDoDao) {
     }
 
     fun addToDo(toDoText: String) {
-        toDoDao.insert(ToDoEntity(text = toDoText))
+        toDoDao.insert(ToDoEntity(text = toDoText, priority = 0))
     }
 
     fun updateToDo(toDoEntity: ToDoEntity) {

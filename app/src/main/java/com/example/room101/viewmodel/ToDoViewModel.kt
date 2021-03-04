@@ -31,7 +31,8 @@ class ToDoViewModel(private val repository: ToDoRepository) : ViewModel() {
                 ToDoEntity(
                     toDoItemViewData.id,
                     toDoItemViewData.text,
-                    toDoItemViewData.isDone
+                    toDoItemViewData.isDone,
+                    0
                 )
             )
         }
